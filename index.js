@@ -9,6 +9,10 @@ const connect = async () => {
     }
 }
 
+const disconnect = async () => {
+    client.end();
+}
+
 const createTable = async () => {
     await client.query(`
         CREATE TABLE IF NOT EXISTS tbl (id SERIAL NOT NULL PRIMARY KEY, name VARCHAR(10)); 
@@ -36,6 +40,7 @@ const run = async () => {
     await createTable();
     await createProcedure();
     await call();
+    await disconnect();
 }
 
 run();
