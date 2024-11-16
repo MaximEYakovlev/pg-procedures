@@ -1,13 +1,17 @@
-const { Sequelize } = require('sequelize');
+import pg from 'pg';
+const { Client } = pg;
 
-const sequelize = new Sequelize('postgres_db', 'user', 'password', {
+const client = new Client({
+    user: 'user',
+    password: 'password',
     host: 'localhost',
-    dialect: 'postgres'
+    port: 5432,
+    database: 'postgres_db',
 });
 
 const connect = async () => {
     try {
-        await sequelize.authenticate();
+        await client.connect();
         console.log('Connection has been established successfully.');
     } catch (error) {
         console.error('Unable to connect to the database:', error);
@@ -15,13 +19,13 @@ const connect = async () => {
 }
 
 const createTable = async () => {
-    await sequelize.query(`
+    await client.query(`
         CREATE TABLE IF NOT EXISTS tbl (id SERIAL NOT NULL PRIMARY KEY, name VARCHAR(10)); 
     `);
 }
 
 const createProcedure = async () => {
-    await sequelize.query(`
+    await client.query(`
         CREATE OR REPLACE PROCEDURE insert_data(a VARCHAR(10))
         LANGUAGE SQL
         BEGIN ATOMIC
@@ -31,7 +35,7 @@ const createProcedure = async () => {
 }
 
 const call = async () => {
-    await sequelize.query(`
+    await client.query(`
         CALL insert_data('Foo');
     `);
 }
