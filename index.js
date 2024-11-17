@@ -1,17 +1,6 @@
-import { client } from './db.js';
-
-const connect = async () => {
-    try {
-        await client.connect();
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-}
-
-const disconnect = async () => {
-    client.end();
-}
+import { client } from "./db/config.js";
+import { connect } from "./db/connect.js";
+import { disconnect } from "./db/disconnect.js";
 
 const createTable = async () => {
     await client.query(`
