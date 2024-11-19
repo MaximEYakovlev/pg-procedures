@@ -1,5 +1,6 @@
 import pg from 'pg';
-const { Client } = pg;
+const { native } = pg;
+const { Client } = native;
 
 export const client = new Client({
     user: 'user',
