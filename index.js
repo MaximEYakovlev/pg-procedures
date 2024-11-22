@@ -37,7 +37,7 @@ const createProcedure = async () => {
 
 const call = async () => {
     await db.client.query(`
-        CALL update_ticket_prices(1.1);
+        CALL update(1.1);
     `);
 }
 
