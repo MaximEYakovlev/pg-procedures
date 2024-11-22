@@ -29,6 +29,12 @@ const createProcedure = async () => {
     `);
 }
 
+const dropProcedure = async () => {
+    await db.client.query(`
+        DROP PROCEDURE IF EXISTS update;
+    `);
+}
+
 // const call = async () => {
 //     await db.client.query(`
 //         CALL insert_data('Foo');
@@ -46,6 +52,7 @@ const run = async () => {
     // await createTable();
     await createProcedure();
     await call();
+    await dropProcedure();
     await db.disconnect();
 }
 
