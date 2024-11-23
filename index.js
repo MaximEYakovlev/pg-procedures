@@ -31,7 +31,7 @@ const createProcedure = async () => {
 
 const alterProcedure = async () => {
     await db.client.query(`
-        ALTER PROCEDURE update(numeric) RENAME TO recalculate_total_amount;
+        ALTER PROCEDURE update RENAME TO recalculate_total_amount;
     `);
 }
 
@@ -49,7 +49,7 @@ const dropProcedure = async () => {
 
 const call = async () => {
     await db.client.query(`
-        CALL update(1.1);
+        CALL recalculate_total_amount(1.1);
     `);
 }
 
