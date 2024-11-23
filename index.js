@@ -29,9 +29,15 @@ const createProcedure = async () => {
     `);
 }
 
+const alterProcedure = async () => {
+    await db.client.query(`
+        ALTER PROCEDURE update(numeric) RENAME TO recalculate_total_amount;
+    `);
+}
+
 const dropProcedure = async () => {
     await db.client.query(`
-        DROP PROCEDURE IF EXISTS update;
+        DROP PROCEDURE IF EXISTS recalculate_total_amount;
     `);
 }
 
@@ -51,6 +57,7 @@ const run = async () => {
     await db.connect();
     // await createTable();
     await createProcedure();
+    await alterProcedure();
     await call();
     await dropProcedure();
     await db.disconnect();
