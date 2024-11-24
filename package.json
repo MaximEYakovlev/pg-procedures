@@ -5,7 +5,7 @@
   "description": "pg-procedure-lab",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "bash ./scripts/run.sh"
   },
   "keywords": [],
   "author": "Maxim Yakovlev",
