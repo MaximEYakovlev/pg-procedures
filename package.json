@@ -5,7 +5,7 @@
   "description": "pg-procedure-lab",
   "main": "index.js",
   "scripts": {
-    "start": "bash ./scripts/run.sh"
+    "start": "bash ./scripts/main.sh"
   },
   "keywords": [],
   "author": "Maxim Yakovlev",
